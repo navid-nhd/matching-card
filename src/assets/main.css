@@ -2,22 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  color: white;
-  background-color: red;
-  background-image: url("../public/images/image-2.jpg");
+  @apply text-white bg-[url('../public/images/image-2.jpg')];
 }
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  font-weight: normal;
-  font-size: 1.5rem;
+  @apply max-w-[1280px] mx-auto p-8 text-2xl;
 }
 
 a,
 .green {
+  @apply de
   text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
 }

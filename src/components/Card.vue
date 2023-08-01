@@ -27,29 +27,20 @@ const flippedStyles = computed(() => {
 </script>
 <style scoped>
 .card {
-  transition: all 500ms ease-in;
+  @apply transition-all duration-500 ease-in rounded-xl;
   transform-style: preserve-3d;
-  border-radius: 12px;
 }
 .face {
-  border-radius: 12px;
-  color: white;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  left: 0;
+  @apply rounded-xl text-white w-full h-full absolute left-0;
   backface-visibility: hidden;
 }
 .front-face {
-  background-color: rgb(228, 204, 153);
-  transform: rotateY(180deg);
+  @apply bg-orange-300 rotate-180;
 }
 .back-face {
-  background-color: rgb(108, 210, 167);
-  background-image: url("../../public/images/image-3.jpg");
-  background-repeat: repeat;
+  @apply bg-[url('../../public/images/image-3.jpg')] bg-no-repeat;
 }
 .flipped {
-  transform: rotateY(180deg);
+  @apply rotate-180;
 }
 </style>
