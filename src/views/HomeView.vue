@@ -1,7 +1,11 @@
 <template>
   <main class="wrapper">
     <div class="py-4">
-      <img src="../../public/images/header.png" alt="" class="mx-auto block" />
+      <img
+        src="../../public/images/header.png"
+        alt=""
+        class="mx-auto block w-80"
+      />
     </div>
     <TransitionGroup tag="section" class="game-board" name="shuffle-card">
       <Card
@@ -9,12 +13,17 @@
         :key="card.id"
         :data="card"
         @cardSelection="cardFlip"
+        :timer="timer"
       />
     </TransitionGroup>
-    <button @click="restartGame()" class="button">
-      Restart
-      <img src="../../public/images/restart-arrow.png" alt="" class="w-7" />
-    </button>
+    <div class="button-wrapper">
+      <button @click="restartGame()" class="button">
+        Restart
+        <img src="../../public/images/restart-arrow.png" alt="" class="w-7" />
+      </button>
+      <!-- <button class="button">Play</button> -->
+      <div class="py-5 text-4xl">{{ timer }}</div>
+    </div>
     <div class="text-2xl">{{ status }}</div>
   </main>
 </template>
@@ -37,6 +46,7 @@ const cardItems = [
 ];
 const cardLists = ref([]);
 const userSelection = ref([]);
+const timer = ref("-- : --");
 
 cardItems.forEach((item) => {
   cardLists.value.push({
@@ -137,7 +147,10 @@ onMounted(() => {
   @apply grid grid-cols-4 grid-rows-4 justify-center gap-4 grid-cols-gameCard grid-rows-gameCard;
 }
 .button {
-  @apply bg-orange-500 hover:bg-orange-600 my-7 py-5 px-6 rounded-lg font-medium text-3xl flex mx-auto gap-3 items-center;
+  @apply bg-orange-500 hover:bg-orange-600 my-7 py-3 px-4 rounded-lg font-medium text-2xl flex mx-auto gap-3 items-center;
+}
+.button-wrapper {
+  /* @apply flex justify-center items-center; */
 }
 
 /* ANIMATION for transition group */

@@ -7,6 +7,7 @@
       />
     </div>
     <div class="face back-face"></div>
+    <div>{{ timer }}</div>
   </div>
 </template>
 <script setup>
@@ -17,9 +18,17 @@ const props = defineProps({
     type: Object,
     required: true,
   },
+  timer: {
+    type: String,
+    required: true,
+  },
 });
 const emit = defineEmits(["cardSelection"]);
 const flipCard = () => {
+  // props.timer = 0;
+  // setTimeout(() => {
+  //   props.timer++;
+  // }, 1000);
   emit("cardSelection", {
     position: props.data.position,
     faceValue: props.data.value,
@@ -40,7 +49,7 @@ const flippedStyles = computed(() => {
   backface-visibility: hidden;
 }
 .front-face {
-  @apply bg-orange-300 p-5;
+  @apply bg-orange-300 p-2;
   transform: rotateY(180deg);
 }
 .back-face {

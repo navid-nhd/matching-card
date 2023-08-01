@@ -5,11 +5,11 @@ module.exports = {
     extend: {
       gridTemplateColumns: {
         // Simple 16 column grid
-        gameCard: "repeat(4, 150px)",
+        gameCard: "repeat(4, 100px)",
       },
       gridTemplateRows: {
         // Simple 16 column grid
-        gameCard: "repeat(4, 150px)",
+        gameCard: "repeat(4, 100px)",
       },
     },
   },
