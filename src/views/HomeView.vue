@@ -17,7 +17,7 @@
 <script setup>
 import { nanoid } from "nanoid";
 import Card from "@/components/Card.vue";
-import { ref, watch, computed } from "vue";
+import { ref, watch, computed, onMounted } from "vue";
 import _ from "lodash";
 
 const cardItems = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -111,27 +111,23 @@ const status = computed(() => {
     return `Remained : ${remainingPairs.value}`;
   }
 });
+onMounted(() => {
+  restartGame();
+});
 </script>
 <style scoped>
 .wrapper {
-  text-align: center;
+  @apply text-center;
 }
 .game-board {
-  display: grid;
-  grid-template-columns: repeat(4, 200px);
-  grid-template-rows: repeat(4, 200px);
-  gap: 15px;
-  justify-content: center;
+  @apply grid grid-cols-4 grid-rows-4 justify-center gap-4 grid-cols-gameCard grid-rows-gameCard;
 }
 .button {
-  background-color: orange;
-  margin: 10px 0px;
-  padding: 10px 15px;
-  border-radius: 10px;
+  @apply bg-orange-400 my-5 py-3 px-4 rounded-lg;
 }
 
 /* ANIMATION for transition group */
 .shuffle-card-move {
-  transition: all 0.8s ease-in-out;
+  @apply transition-all duration-1000 ease-in-out;
 }
 </style>
