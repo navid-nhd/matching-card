@@ -1,6 +1,11 @@
 <template>
   <div class="card relative" :class="flippedStyles" @click="flipCard">
-    <div class="face front-face">{{ data.value }} - {{ data.matched }}</div>
+    <div class="face front-face">
+      <img
+        :src="`../../public/icon-set/${data.value}.png`"
+        class="w-full h-full"
+      />
+    </div>
     <div class="face back-face"></div>
   </div>
 </template>
@@ -35,12 +40,13 @@ const flippedStyles = computed(() => {
   backface-visibility: hidden;
 }
 .front-face {
-  @apply bg-orange-300 rotate-180;
+  @apply bg-orange-300 p-5;
+  transform: rotateY(180deg);
 }
 .back-face {
   @apply bg-[url('../../public/images/image-3.jpg')] bg-no-repeat;
 }
 .flipped {
-  @apply rotate-180;
+  transform: rotateY(180deg);
 }
 </style>

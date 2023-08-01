@@ -1,6 +1,8 @@
 <template>
   <main class="wrapper">
-    <h1 class="py-1">Matching Card Game</h1>
+    <div class="py-4">
+      <img src="../../public/images/header.png" alt="" class="mx-auto block" />
+    </div>
     <TransitionGroup tag="section" class="game-board" name="shuffle-card">
       <Card
         v-for="card in cardLists"
@@ -9,8 +11,11 @@
         @cardSelection="cardFlip"
       />
     </TransitionGroup>
-    <button @click="restartGame()" class="button">Restart</button>
-    <div>{{ status }} - {{ remainingPairs }}</div>
+    <button @click="restartGame()" class="button">
+      Restart
+      <img src="../../public/images/restart-arrow.png" alt="" class="w-7" />
+    </button>
+    <div class="text-2xl">{{ status }}</div>
   </main>
 </template>
 
@@ -20,7 +25,16 @@ import Card from "@/components/Card.vue";
 import { ref, watch, computed, onMounted } from "vue";
 import _ from "lodash";
 
-const cardItems = [1, 2, 3, 4, 5, 6, 7, 8];
+const cardItems = [
+  "daco",
+  "skeleton",
+  "babyGhost",
+  "bat",
+  "cat",
+  "bat-2",
+  "sausage",
+  "vampire-cat",
+];
 const cardLists = ref([]);
 const userSelection = ref([]);
 
@@ -123,7 +137,7 @@ onMounted(() => {
   @apply grid grid-cols-4 grid-rows-4 justify-center gap-4 grid-cols-gameCard grid-rows-gameCard;
 }
 .button {
-  @apply bg-orange-400 my-5 py-3 px-4 rounded-lg;
+  @apply bg-orange-500 hover:bg-orange-600 my-7 py-5 px-6 rounded-lg font-medium text-3xl flex mx-auto gap-3 items-center;
 }
 
 /* ANIMATION for transition group */

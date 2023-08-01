@@ -2,15 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  @apply text-white bg-[url('../public/images/image-2.jpg')];
+  @apply text-white bg-[url('../public/images/bg-2.jfif')] bg-cover;
 }
 
 #app {
   @apply max-w-[1280px] mx-auto p-8 text-2xl;
-}
-
-a,
-.green {
-  @apply de
-  text-decoration: none;
 }
