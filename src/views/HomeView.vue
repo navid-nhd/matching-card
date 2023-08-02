@@ -17,12 +17,15 @@
       />
     </TransitionGroup>
     <div class="button-wrapper">
-      <button @click="restartGame()" class="button">
-        Restart
+      <button v-if="newPlay" @click="restartGame()" class="button">
+        <span>Restart</span>
         <img src="../../public/images/restart-arrow.png" alt="" class="w-7" />
       </button>
-      <!-- <button class="button">Play</button> -->
-      <div class="py-5 text-4xl">{{ timer }}</div>
+      <button v-else @click="newPlayer()" class="button">
+        <span>Play</span>
+        <img src="../../public/images/play.png" alt="" class="w-7" />
+      </button>
+      <div class="py-5 text-4xl"></div>
     </div>
     <div class="text-2xl">{{ status }}</div>
   </main>
@@ -46,13 +49,14 @@ const cardItems = [
 ];
 const cardLists = ref([]);
 const userSelection = ref([]);
-const timer = ref("-- : --");
+const timer = ref(0);
+const newPlay = ref(false);
 
 cardItems.forEach((item) => {
   cardLists.value.push({
     value: item,
     id: nanoid(),
-    visible: false,
+    visible: true,
     position: null,
     matched: false,
   });
@@ -60,7 +64,7 @@ cardItems.forEach((item) => {
   cardLists.value.push({
     value: item,
     id: nanoid(),
-    visible: false,
+    visible: true,
     position: null,
     matched: false,
   });
@@ -80,11 +84,12 @@ const restartGame = () => {
   cardLists.value = cardLists.value.map((card, index) => {
     return {
       ...card,
-      visible: false,
+      visible: true,
       matched: false,
       position: index,
     };
   });
+  flipAroundAllCards();
 };
 const cardFlip = (param) => {
   cardLists.value[param.position].visible = true;
@@ -135,9 +140,27 @@ const status = computed(() => {
     return `Remained : ${remainingPairs.value}`;
   }
 });
-onMounted(() => {
-  restartGame();
-});
+const newPlayer = () => {
+  newPlay.value = true;
+  shuffleCards();
+  flipAroundAllCards();
+};
+
+const flipAroundAllCards = () => {
+  setTimeout(() => {
+    cardLists.value = cardLists.value.map((card, index) => {
+      return {
+        ...card,
+        visible: false,
+        matched: false,
+        position: index,
+      };
+    });
+  }, 5000);
+};
+// onMounted(() => {
+//   restartGame();
+// });
 </script>
 <style scoped>
 .wrapper {
